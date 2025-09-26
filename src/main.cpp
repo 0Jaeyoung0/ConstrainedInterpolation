@@ -35,21 +35,6 @@ const char* fragmentShaderSource = R"glsl(
 )glsl";
 
 // --- Global State ---
-// "슬라럼" 경로 예시 데이터 // zoom = 6.0
-std::vector<double> t = {0.0, 1.5, 3.0, 4.5};
-std::vector<double> x = {-9.0, -3.0, 3.0, 9.0};
-std::vector<double> y = {-2.0, 2.0, -2.0, 2.0};
-std::vector<double> direction = {45.0, -45.0, 45.0, -45.0};
-std::vector<double> curvature = {0.0, -0.5, 0.5, 0.0};
-
-// // "루프" 경로 예시 데이터  // zoom = 8.0
-std::vector<double> t = {0.0, 1.0, 2.0, 3.0, 4.0};
-std::vector<double> x = {-4.0, -2.0, 0.0, 2.0, 4.0};
-std::vector<double> y = {-5.0, -1.0, 1.0, -1.0, -5.0};
-std::vector<double> direction = {45.0, 90.0, 0.0, 270.0, -45.0};
-std::vector<double> curvature = {0.0, 0.2, 0.2, 0.2, 0.0};
-
-// // "장애물 회피" 경로 예시 데이터 // zoom = 6.0
 std::vector<double> t = {0.0, 1.0, 2.0, 3.0, 4.0};
 std::vector<double> x = {-8.0, -3.0, 0.0, 3.0, 8.0};
 std::vector<double> y = {-2.0, -2.0, 2.0, -2.0, 2.0};

@@ -60,9 +60,9 @@ std::vector<double> curvature = {0.0, 0.3, -0.5, 0.3, 0.0};
 ```cpp
 std::vector<double> t = {0.0, 1.0, 2.0, 3.0, 4.0};
 std::vector<double> x = {-4.0, -2.0, 0.0, 2.0, 4.0};
-std::vector<double> y = {-5.0, -1.0, 1.0, -1.0, -5.0};
-std::vector<double> direction = {45.0, 90.0, 0.0, 270.0, -45.0};
-std::vector<double> curvature = {0.0, 0.2, 0.2, 0.2, 0.0};
+std::vector<double> y = {-3.0, 1.0, 3.0, 1.0, -3.0};
+std::vector<double> direction = {45.0, 90.0, 0.0, -90.0, -45.0};
+std::vector<double> curvature = {0.0, -2.0, -2.0, -2.0, 0.0};
 ```
 
 **Result:**
