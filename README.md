@@ -33,7 +33,7 @@ std::vector<double> curvature = {0.0, -0.5, 0.5, 0.0};
 
 **Result:**
 
-![Slalom Path]()
+![Slalom Path](https://github.com/user-attachments/assets/1dc00e23-7cf7-4b42-826b-f8ed21a647ec)
 
 ---
 
@@ -50,7 +50,7 @@ std::vector<double> curvature = {0.0, 0.3, -0.5, 0.3, 0.0};
 
 **Result:**
 
-![Obstacle Avoidance Path]()
+![Obstacle Avoidance Path](https://github.com/user-attachments/assets/cb4e1dc1-6919-415c-995f-34a30bba4179)
 
 ---
 
@@ -67,4 +67,4 @@ std::vector<double> curvature = {0.0, -2.0, -2.0, -2.0, 0.0};
 
 **Result:**
 
-![Outward Spiral Path]()
+![Outward Spiral Path](https://github.com/user-attachments/assets/4d2d3e61-ad3a-4710-a905-2a7e1c81c569)
