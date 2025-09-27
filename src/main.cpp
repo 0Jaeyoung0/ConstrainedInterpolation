@@ -133,21 +133,25 @@ void setupBuffers()
     glBufferData(GL_ARRAY_BUFFER, grid_verts.size() * sizeof(float), grid_verts.data(), GL_STATIC_DRAW);
 }
 
-void updateDynamicBuffers() {
+void updateDynamicBuffers() 
+{
     if (!interpolator) return;
 
     std::vector<float> spline_verts, point_verts, vector_verts, circle_verts;
     circle_draw_commands.clear();
 
-    for (double time = t.front(); time <= t.back(); time += 0.01) {
-        if (auto pos = (*interpolator)(time)) {
+    for (double time = t.front(); time <= t.back(); time += 0.01) 
+    {
+        if (auto pos = (*interpolator)(time)) 
+        {
             spline_verts.push_back(static_cast<float>(pos->first));
             spline_verts.push_back(static_cast<float>(pos->second));
         }
     }
 
     GLint circle_first = 0;
-    for (size_t i = 0; i < x.size(); ++i) {
+    for (size_t i = 0; i < x.size(); ++i) 
+    {
         point_verts.push_back(static_cast<float>(x[i]));
         point_verts.push_back(static_cast<float>(y[i]));
 
@@ -157,13 +161,15 @@ void updateDynamicBuffers() {
         vector_verts.push_back(static_cast<float>(x[i] + 0.5 * cos(angle_rad)));
         vector_verts.push_back(static_cast<float>(y[i] + 0.5 * sin(angle_rad)));
 
-        if (std::abs(curvature[i]) > 1e-6) {
+        if (std::abs(curvature[i]) > 1e-6) 
+        {
             double radius = 1.0 / curvature[i];
             double center_x = x[i] - radius * sin(angle_rad);
             double center_y = y[i] + radius * cos(angle_rad);
             
             GLsizei circle_vert_count_for_this_circle = 0;
-            for (int j = 0; j <= 360; ++j) {
+            for (int j = 0; j <= 360; ++j) 
+            {
                 double circle_angle = j * M_PI / 180.0;
                 circle_verts.push_back(static_cast<float>(center_x + std::abs(radius) * cos(circle_angle)));
                 circle_verts.push_back(static_cast<float>(center_y + std::abs(radius) * sin(circle_angle)));
@@ -195,13 +201,29 @@ void keyCallback(GLFWwindow* window, int key, int scancode, int action, int mods
         needs_update = true;
         switch (key) 
         {
-            case GLFW_KEY_LEFT: selected_point = (selected_point > 0) ? selected_point - 1 : t.size() - 1; break;
-            case GLFW_KEY_RIGHT: selected_point = (selected_point < t.size() - 1) ? selected_point + 1 : 0; break;
-            case GLFW_KEY_A: direction[selected_point] += 5.0; break;
-            case GLFW_KEY_D: direction[selected_point] -= 5.0; break;
-            case GLFW_KEY_W: curvature[selected_point] += 1.0; break;
-            case GLFW_KEY_S: curvature[selected_point] -= 1.0; if (std::abs(curvature[selected_point]) < 0.05) curvature[selected_point] = 0; break;
-            case GLFW_KEY_ESCAPE:glfwSetWindowShouldClose(window, GLFW_TRUE); break;
+            case GLFW_KEY_LEFT: 
+                selected_point = (selected_point > 0) ? selected_point - 1 : t.size() - 1; 
+                break;
+            case GLFW_KEY_RIGHT: 
+                selected_point = (selected_point < t.size() - 1) ? selected_point + 1 : 0; 
+                break;
+            case GLFW_KEY_A: 
+                direction[selected_point] += 5.0; 
+                break;
+            case GLFW_KEY_D: 
+                direction[selected_point] -= 5.0; 
+                break;
+            case GLFW_KEY_W: 
+                curvature[selected_point] += 1.0; 
+                break;
+            case GLFW_KEY_S: 
+                curvature[selected_point] -= 1.0; 
+                if (std::abs(curvature[selected_point]) < 0.05) 
+                    curvature[selected_point] = 0; 
+                break;
+            case GLFW_KEY_ESCAPE:
+                glfwSetWindowShouldClose(window, GLFW_TRUE); 
+                break;
         }
     }
 }
