@@ -35,11 +35,27 @@ const char* fragmentShaderSource = R"glsl(
 )glsl";
 
 // --- Global State ---
-std::vector<double> t = {0.0, 1.5, 3.0, 4.5};
-std::vector<double> x = {-9.0, -3.0, 3.0, 9.0};
-std::vector<double> y = {-2.0, 2.0, -2.0, 2.0};
-std::vector<double> direction = {45.0, -45.0, 45.0, -45.0};
-std::vector<double> curvature = {0.0, -0.5, 0.5, 0.0};
+
+// spiral
+// std::vector<double> t = {0, 1, 2, 3, 4};
+// std::vector<double> x = {0.0, 0.0, -M_PI, 0.0, 2 * M_PI};
+// std::vector<double> y = {0.0, M_PI / 2, 0.0, -1.5 * M_PI, 0.0};
+// std::vector<double> direction = {0.0, 180.0, -90.0, 0.0, 90.0};
+// std::vector<double> curvature = {5.0, 2.0, 1.0, 0.5, 0.25};
+
+// s-curve
+// std::vector<double> t = {0, 1, 2, 3};
+// std::vector<double> x = {-8.0, -4.0, 4.0, 8.0};
+// std::vector<double> y = {0.0, 4.0, -4.0, 0.0};
+// std::vector<double> direction = {0.0, 0.0, 0.0, 0.0};
+// std::vector<double> curvature = {0.0, -1, 1, 0.0};
+
+// avoiding an obstacle.
+std::vector<double> t = {0, 1, 2, 3, 4};
+std::vector<double> x = {-8.0, -2.0, 0.0, 2.0, 8.0};
+std::vector<double> y = {0.0, 0.0, 3.0, 0.0, 0.0};
+std::vector<double> direction = {0.0, 45.0, 0.0, -45.0, 0.0};
+std::vector<double> curvature = {0.0, 0.7, -2.0, 0.7, 0.0};
 
 int selected_point = 0;
 bool needs_update = true;
@@ -201,11 +217,20 @@ void keyCallback(GLFWwindow* window, int key, int scancode, int action, int mods
         needs_update = true;
         switch (key) 
         {
+            case GLFW_KEY_TAB:
+                selected_point = (selected_point < t.size() - 1) ? selected_point + 1 : 0; 
+                break;
+            case GLFW_KEY_UP: 
+                y[selected_point] += 0.1; 
+                break;
+            case GLFW_KEY_DOWN: 
+                y[selected_point] -= 0.1;
+                break;
             case GLFW_KEY_LEFT: 
-                selected_point = (selected_point > 0) ? selected_point - 1 : t.size() - 1; 
+                x[selected_point] -= 0.1; 
                 break;
             case GLFW_KEY_RIGHT: 
-                selected_point = (selected_point < t.size() - 1) ? selected_point + 1 : 0; 
+                x[selected_point] += 0.1;
                 break;
             case GLFW_KEY_A: 
                 direction[selected_point] += 5.0; 
@@ -231,7 +256,9 @@ void keyCallback(GLFWwindow* window, int key, int scancode, int action, int mods
 void printInstructions() 
 {
     std::cout << "--- Controls ---\n"
-              << "Left/Right Arrows: Select control point\n"
+              << "Tab: Select next control point\n"
+              << "Up/Down Arrows: Adjust y-coordinate of selected point\n"
+              << "Left/Right Arrows: Adjust x-coordinate of selected point\n"
               << "A/D: Adjust direction of selected point\n"
               << "W/S: Adjust curvature of selected point\n"
               << "ESC: Exit\n"
