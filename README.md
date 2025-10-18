@@ -20,51 +20,51 @@ Here are a few examples of paths created with different constraints.
 
 ---
 
-### 1. Slalom Path
+### 1. Spiral
 
 **Sample Data:**
 ```cpp
-std::vector<double> t = {0.0, 1.5, 3.0, 4.5};
-std::vector<double> x = {-9.0, -3.0, 3.0, 9.0};
-std::vector<double> y = {-2.0, 2.0, -2.0, 2.0};
-std::vector<double> direction = {45.0, -45.0, 45.0, -45.0};
-std::vector<double> curvature = {0.0, -0.5, 0.5, 0.0};
+std::vector<double> t = {0, 1, 2, 3, 4};
+std::vector<double> x = {0.0, 0.0, -M_PI, 0.0, 2 * M_PI};
+std::vector<double> y = {0.0, M_PI / 2, 0.0, -1.5 * M_PI, 0.0};
+std::vector<double> direction = {0.0, 180.0, -90.0, 0.0, 90.0};
+std::vector<double> curvature = {5.0, 2.0, 1.0, 0.5, 0.25};
 ```
 
 **Result:**
 
-![Slalom Path](https://github.com/user-attachments/assets/1dc00e23-7cf7-4b42-826b-f8ed21a647ec)
+<img src="./images/spiral.png"/>
 
 ---
 
-### 2. Obstacle Avoidance Path
+### 2. S-curve
 
 **Sample Data:**
 ```cpp
-std::vector<double> t = {0.0, 1.0, 2.0, 3.0, 4.0};
-std::vector<double> x = {-8.0, -3.0, 0.0, 3.0, 8.0};
-std::vector<double> y = {-2.0, -2.0, 2.0, -2.0, 2.0};
+std::vector<double> t = {0, 1, 2, 3};
+std::vector<double> x = {-8.0, -4.0, 4.0, 8.0};
+std::vector<double> y = {0.0, 4.0, -4.0, 0.0};
+std::vector<double> direction = {0.0, 0.0, 0.0, 0.0};
+std::vector<double> curvature = {0.0, -1, 1, 0.0};
+```
+
+**Result:**
+
+<img src="./images/s-curve.png"/>
+
+---
+
+### 3. Obstacle Avoidance
+
+**Sample Data:**
+```cpp
+std::vector<double> t = {0, 1, 2, 3, 4};
+std::vector<double> x = {-8.0, -2.0, 0.0, 2.0, 8.0};
+std::vector<double> y = {0.0, 0.0, 3.0, 0.0, 0.0};
 std::vector<double> direction = {0.0, 45.0, 0.0, -45.0, 0.0};
-std::vector<double> curvature = {0.0, 0.3, -0.5, 0.3, 0.0};
+std::vector<double> curvature = {0.0, 0.7, -2.0, 0.7, 0.0};
 ```
 
 **Result:**
 
-![Obstacle Avoidance Path](https://github.com/user-attachments/assets/cb4e1dc1-6919-415c-995f-34a30bba4179)
-
----
-
-### 3. Untitled
-
-**Sample Data:**
-```cpp
-std::vector<double> t = {0.0, 1.0, 2.0, 3.0, 4.0};
-std::vector<double> x = {-4.0, -2.0, 0.0, 2.0, 4.0};
-std::vector<double> y = {-3.0, 1.0, 3.0, 1.0, -3.0};
-std::vector<double> direction = {45.0, 90.0, 0.0, -90.0, -45.0};
-std::vector<double> curvature = {0.0, -2.0, -2.0, -2.0, 0.0};
-```
-
-**Result:**
-
-![Outward Spiral Path](https://github.com/user-attachments/assets/4d2d3e61-ad3a-4710-a905-2a7e1c81c569)
+<img src="./images/avoidance.png"/>
