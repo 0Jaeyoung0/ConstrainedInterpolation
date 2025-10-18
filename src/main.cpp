@@ -11,7 +11,7 @@
 
 #include <Eigen/Dense>
 
-#include "ConstrainedIntepolation.hpp"
+#include "ConstrainedIntepolation.h"
 
 // --- Shader Sources ---
 const char* vertexShaderSource = R"glsl(
@@ -35,11 +35,11 @@ const char* fragmentShaderSource = R"glsl(
 )glsl";
 
 // --- Global State ---
-std::vector<double> t = {0.0, 1.0, 2.0, 3.0, 4.0};
-std::vector<double> x = {-8.0, -3.0, 0.0, 3.0, 8.0};
-std::vector<double> y = {-2.0, -2.0, 2.0, -2.0, 2.0};
-std::vector<double> direction = {0.0, 45.0, 0.0, -45.0, 0.0};
-std::vector<double> curvature = {0.0, 0.3, -0.5, 0.3, 0.0};
+std::vector<double> t = {0.0, 1.5, 3.0, 4.5};
+std::vector<double> x = {-9.0, -3.0, 3.0, 9.0};
+std::vector<double> y = {-2.0, 2.0, -2.0, 2.0};
+std::vector<double> direction = {45.0, -45.0, 45.0, -45.0};
+std::vector<double> curvature = {0.0, -0.5, 0.5, 0.0};
 
 int selected_point = 0;
 bool needs_update = true;
@@ -214,10 +214,10 @@ void keyCallback(GLFWwindow* window, int key, int scancode, int action, int mods
                 direction[selected_point] -= 5.0; 
                 break;
             case GLFW_KEY_W: 
-                curvature[selected_point] += 1.0; 
+                curvature[selected_point] += 0.1; 
                 break;
             case GLFW_KEY_S: 
-                curvature[selected_point] -= 1.0; 
+                curvature[selected_point] -= 0.1; 
                 if (std::abs(curvature[selected_point]) < 0.05) 
                     curvature[selected_point] = 0; 
                 break;

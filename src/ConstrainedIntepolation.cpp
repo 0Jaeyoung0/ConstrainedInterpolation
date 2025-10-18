@@ -1,4 +1,4 @@
-#include "ConstrainedIntepolation.hpp"
+#include "ConstrainedIntepolation.h"
 
 
 std::optional<ConstrainedInterpolation> ConstrainedInterpolation::create(const std::vector<double>& t, const std::vector<double>& x, const std::vector<double>& y, const std::vector<double>& direction, const std::vector<double>& curvature)
@@ -122,7 +122,7 @@ std::vector<double> ConstrainedInterpolation::calcSpeed(const std::vector<double
             dy = (y[i + 1] - y[i - 1]) / (t[i + 1] - t[i - 1]);
         }
 
-        double speed = sqrt(dx * dx + dy * dy) / 2;
+        double speed = sqrt(dx * dx + dy * dy);
         result.push_back(speed);
     }
 
