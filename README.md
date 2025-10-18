@@ -68,3 +68,17 @@ std::vector<double> curvature = {0.0, 0.7, -2.0, 0.7, 0.0};
 **Result:**
 
 <img src="./images/avoidance.png"/>
+
+## Run the Example
+
+You can build and run the example program to see these results yourself.
+
+```bash
+git clone https://github.com/0Jaeyoung0/ConstrainedInterpolation.git
+cd ConstrainedInterpolation
+mkdir build
+cd build
+cmake ..
+cmake --build .
+./ConstrainedInterpolation
+```
